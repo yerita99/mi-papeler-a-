@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block title %}Iniciar Sesión | Mi Negocio{% endblock %}
+
+{% block content %}
+
+<div class="container d-flex justify-content-center align-items-center"
+     style="min-height: 75vh;">
+
+    <div class="card shadow-lg border-0"
+         style="width: 100%; max-width: 420px; border-radius: 15px;">
+
+        <!-- ENCABEZADO -->
+        <div class="card-header bg-primary text-white text-center py-4"
+             style="border-radius: 15px 15px 0 0;">
+
+            <h2 class="mb-1">Bienvenido</h2>
+            <p class="mb-0">Inicia sesión en Mi Negocio</p>
+
+        </div>
+
+        <!-- FORMULARIO -->
+        <div class="card-body p-4">
+
+            {% if form.errors %}
+                <div class="alert alert-danger">
+                    Usuario o contraseña incorrectos.
+                    Inténtalo nuevamente.
+                </div>
+            {% endif %}
+
+            <form method="post">
+
+                {% csrf_token %}
+
+                <!-- USUARIO -->
+                <div class="mb-3">
+
+                    <label class="form-label fw-bold">
+                        Nombre de usuario
+                    </label>
+
+                    <input type="text"
+                           name="username"
+                           class="form-control form-control-lg"
+                           placeholder="Ingresa tu usuario"
+                           autocomplete="username"
+                           required
+                           autofocus>
+
+                </div>
+
+                <!-- CONTRASEÑA -->
+                <div class="mb-4">
+
+                    <label class="form-label fw-bold">
+                        Contraseña
+                    </label>
+
+                    <input type="password"
+                           name="password"
+                           class="form-control form-control-lg"
+                           placeholder="Ingresa tu contraseña"
+                           autocomplete="current-password"
+                           required>
+
+                </div>
+
+                <input type="hidden"
+                       name="next"
+                       value="{{ next }}">
+
+                <!-- BOTÓN -->
+                <button type="submit"
+                        class="btn btn-primary btn-lg w-100">
+
+                    Iniciar sesión
+
+                </button>
+
+            </form>
+
+        </div>
+
+        <!-- PIE -->
+        <div class="card-footer text-center bg-light py-3">
+
+            <small class="text-muted">
+                Sistema de administración Mi Negocio
+            </small>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

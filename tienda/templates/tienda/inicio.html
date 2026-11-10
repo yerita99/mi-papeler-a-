@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Inicio - Mi Negocio{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>Bienvenido a Mi Negocio</h2>
+    <p>Software que crece con tu negocio.</p>
+</div>
+
+<div class="card">
+    <h3>Categorías</h3>
+    <ul>
+        {% for categoria in categorias %}
+            <li>{{ categoria.nombre }}</li>
+        {% empty %}
+            <li>No hay categorías registradas.</li>
+        {% endfor %}
+    </ul>
+</div>
+
+<div class="card">
+    <h3>Productos Activos</h3>
+    <ul>
+        {% for producto in productos %}
+            <li>{{ producto.nombre }} - ${{ producto.precio }} (Stock: {{ producto.stock }})</li>
+        {% empty %}
+            <li>No hay productos activos.</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
+{% if user.is_authenticated %} 
+ <span style="color:#38bdf8;">�� {{ user.username }}</span>  <a href="{% url 'dashboard' %}">Dashboard</a> 
+ <form action="{% url 'logout' %}" method="post" style="display:inline;" > 
+ {% csrf_token %} 
+ <button type="submit" class="btn btn-danger" style="margin-left:15px; ">Cerrar sesión</button>
+ </form> 
+{% else %} 
+ <a href="{% url 'login' %}">Iniciar sesión</a> 
+{% endif %} 
