@@ -13,9 +13,17 @@ SECRET_KEY = os.environ.get(
     'django-insecure-clave-temporal-para-desarrollo'
 )
 
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'localhost',
+    'mi-papeler-a.onrender.com',
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://mi-papeler-a.onrender.com',
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -35,7 +43,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
 ]
 
 ROOT_URLCONF = 'negocio.urls'
@@ -92,6 +99,9 @@ STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 LOGIN_URL = '/login/'
+
 LOGIN_REDIRECT_URL = '/dashboard/'
+
 LOGOUT_REDIRECT_URL = '/login/'
